@@ -1,0 +1,52 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title><?php // используется стандартный заголовок страницы, если не указан пользовательский заголовок...
+	if (isset($page_title)) { 
+			echo $page_title; 
+	} else { 
+			echo 'Кофе - He желаете ли чашечку кофе?';
+	} 
+	?></title>
+<meta name="description" content="3дecь находится описание" /> 
+<meta name="keywords" content="ключевые слова" /> 
+<meta name="author" content="" /> 
+   <link href="/css/style.css" rel="stylesheet" type="text/css" />
+<!--[Если в качестве браузера выбран IE 7]>
+   <script type="text/javascript" src="/js/ie_png.js"></script>
+   <script type="text/javascript">
+       ie_png.fix('.png, .logo h1, .box .left-top-corner, .box .right-top-corner, .box .left-bot-corner, .box .right-bot-corner, .box .border-left, .box .border-right, .box .border-top, .box .border-bot, .box .inner, .special dd, #contacts-form input, #contacts-form textarea');
+   </script>
+<![endif]-->
+</head>
+
+<body id="page1">
+   <!-- header -->
+   <div id="header">
+      <div class="container">
+         <div class="wrapper">
+            <ul class="top-links">
+               <li><a href="/index.php" class="first"><img alt="" src="/images/icon-home.gif" /></a></li>
+               <li><a href="/cart.php"><img alt="" src="/images/icon-cart.gif" /></a></li>
+               <li><a href="/contact.php"><img alt="" src="/images/icon-mail.gif" /></a></li>
+               <li><a href="/sitemap.php"><img alt="" src="/images/icon-map.gif" /></a></li>
+            </ul>
+            <div class="logo">
+               <h1><a href="/index.php">Koфe</a><span>Wouldn't you love a cup right now?</span></h1>
+            </div>
+         </div>
+            <ul class="nav">
+            <!-- MENU -->
+            <li><a href="/shop/coffee/">Koфe</a></li>
+            <li><a href="/shop/goodies/">Сувениры</a></li>
+            <li><a href="/shop/sales/">Скидки</a></li>
+            <li><a href="/wishlist.php">Список желаний</a></li>
+            <li><a href="/cart.php">Корзина</a></li>
+            <!-- END MENU -->
+            </ul>
+      </div>
+   </div>
+   <!-- content -->
+   <div id="content">
+      <div class="container">
+         <div class="inside">

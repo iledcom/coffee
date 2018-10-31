@@ -1,0 +1,46 @@
+﻿<?php // Эта страница включена с помощью сценария browse.php
+// На этой странице отображаются доступные сувениры
+// Эта страница будет использовать результат выполнения запроса $r
+// В результате выполнения запроса возвращается массив, включающий следующие элементы: description, image, sku, name и stock
+
+// Заголовок отображается лишь один раз
+$header = false; 
+
+// Будет добавлено позже, в главе 8
+include('./includes/product_functions.inc.php');
+
+// Циклический просмотр результатов выполнения
+while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+
+	// Если заголовок не отображается, создайте его
+	if (!$header) {
+		echo BOX_BEGIN; 
+
+		echo '<h2>' . $category . '</h2>
+		          	<div class="img-box">
+		             	<p><img alt="' . $category . '" src="/products/' . $row['g_image'] . '" />'. $row['g_description'] . '</p>
+		          </div>';
+
+		echo BOX_END;
+
+		echo '<p><br clear="all" /></p>';
+
+		echo BOX_BEGIN; 
+
+		// Этот заголовок уже отображен
+		$header = true;
+
+	} // завершение блока IF для $header
+
+	// Отображение каждого товара
+	echo '<h3>' . $row['name'] . '</h3>
+		<div class="img-box"><p><img alt="' . $row['name'] . '" src="/products/' . $row['image']  . '" />' . $row['description'] . '<br />
+		<strong>Цена:</strong> ' . $row['price'] . '<br />		
+		<strong>Доступно:</strong> ' . get_stock_status($row['stock']) . '</p>
+		<p><a href="/cart.php?sku=' . $row['sku'] . '&action=add" class="button">Добавить в корзину</a></p></div>';
+  	
+} // завершение цикла WHILE 
+
+echo '<p> <br clear="all" /></p>';
+
+echo BOX_END;

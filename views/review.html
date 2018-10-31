@@ -1,0 +1,48 @@
+﻿<?php 
+
+// Эта страница включена с помощью сценария browse.php
+// Эта страница отображает форму, используемую для составления обзора товарной позиции
+// Эта страница также отображает существующие позиции
+
+echo BOX_BEGIN; 
+
+if (isset($message)) echo "<p>$message</p>";
+
+echo '<h2>Добавить обзор</h2><p>Все поля обязательны для ввода, ваши имя и адрес электронной почты никогда не отображаются.</p><form action="/browse/' . $type . '/' . urlencode($category) . '/' . $sp_cat . '" method="post">';
+
+echo '<div class="field"><label for="name"><strong>Имя</strong></label><br />';
+
+include('./includes/form_functions.inc.php');
+create_form_input('name', 'text', $review_errors); 
+
+echo '</div>
+<div class="field"><label for="email"><strong>Адрес электронной почты</strong></label><br />';
+
+create_form_input('email', 'text', $review_errors); 
+
+echo '</div>
+<div class="field"><label for="review"><strong>Обзор</strong></label><br />';
+
+create_form_input('review', 'textarea', $review_errors); 
+
+echo '</div><input type="submit" value="Отправить" class="button" /></form>';
+
+echo BOX_END;
+
+// Показать обзоры...
+echo BOX_BEGIN; 
+
+echo '<h2>Обзоры</h2>';
+
+if (mysqli_num_rows($r) > 0) {
+	
+	// Циклический просмотр результатов
+	while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+		echo '<p>' . htmlspecialchars($row['review']) . '</p><hr />';
+	} // завершение цикла WHILE 
+
+} else {
+	echo '<p>Обзоры этого товара отсутствуют.</p>';
+}
+
+echo BOX_END;
